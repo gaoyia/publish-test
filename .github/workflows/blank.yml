@@ -26,7 +26,15 @@ jobs:
     steps:
       # 打印github.ref_name 和 github.ref
       - name: Print GitHub Ref
-        run: echo ${{ github.ref_name }} ${{ github.ref }}
+        run: echo ${{ github.ref_name }} ${{ github.ref }} ${{ github.event_name }} ${{ github.event }} ${{ github.event_path }} ${{ github.workflow }} ${{ github.workflow_path }}
+
+      #  查看文件目录
+      - name: List files
+        run: |
+          ls -la
+          cat Release.txt
+          cat LICENSE
+
       
 
 
