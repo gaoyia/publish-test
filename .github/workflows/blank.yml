@@ -4,9 +4,12 @@ name: CI
 
 # Controls when the workflow will run
 on:
+  
   # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
     branches: [ "master" ]
+    # Sequence of patterns matched against refs/tags
+    tags: [ "v1.*" ]
   pull_request:
     branches: [ "master" ]
 
@@ -22,6 +25,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # 打印github.ref_name 和 github.ref
+      - name: Print GitHub Ref
+        run: echo ${{ github.ref_name }} ${{ github.ref }}
+      
+
+
       - name: Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
